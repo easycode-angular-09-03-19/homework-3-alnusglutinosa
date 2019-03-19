@@ -1,0 +1,13 @@
+<h1>{{ name }}</h1>
+<p>пробег: {{ mileage }}</p>
+<p>объем топливного бака: {{ tankVolume }}</p> 
+<p>текущее количество бензина в баке: {{ quantityGas }}</p>     
+<h3>ХАРАКТЕРИСТИКИ:</h3>
+<ul>
+  <li *ngFor="let characteristic of characteristics">
+    {{ characteristic }}
+  </li>
+</ul>
+
+<button (click)="ride()">Ride</button>
+<button [hidden]="hideBtnFill" (click)="fill()">Fill</button> 
