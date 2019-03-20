@@ -1,0 +1,19 @@
+<h1>{{ info.name }}</h1>
+<p>пробег: {{ info.mileage }}</p>
+<p>объем топливного бака: {{ info.tankVolume }}</p> 
+<p>текущее количество бензина в баке: {{ info.quantityGas }}</p>     
+<h3>ХАРАКТЕРИСТИКИ:</h3>
+<ul>
+  <li *ngFor="let characteristic of info.characteristics">
+    {{ characteristic }}
+  </li>
+</ul>
+
+<button class="btn" (click)="ride()">Ride</button>
+<button class="btn" [hidden]="hideBtnFill" (click)="fill()">Fill</button> 
+
+<hr>
+<div *ngIf="info.quantityGas; else elseBlock"><i [style.color]="'green'">Бензин есть</i></div>
+<ng-template #elseBlock>
+  <i [style.color]="'red'">Бензина нет</i>
+</ng-template>
