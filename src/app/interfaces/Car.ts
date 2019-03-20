@@ -4,7 +4,4 @@ export interface Car {
     tankVolume: number;
     quantityGas: number;
     characteristics: string[];
-    hideBtnFill: boolean;
-    ride: () => void;
-    fill: () => void;
 }

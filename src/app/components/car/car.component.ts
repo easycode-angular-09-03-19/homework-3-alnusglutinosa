@@ -17,46 +17,48 @@ import { Car } from "../../interfaces/Car";
 // и уменьшаться бензин в баке если бензин подходит к нулю то нужно показать кнопку заправиться (изначально она скрыта). 
 // Также нужно вывести список характеристик машины в произвольном виде.
 
-export class CarComponent implements Car {
-  public name = 'Ferrari';
-  public mileage = 2000;
-  public tankVolume = 20;
-  public quantityGas = 12;
-  public characteristics = [
-    'Двигатель 2 литра',
-    'Вес в 1100 кг',
-    'Разгон от 0-100',
-    'Модель Ferrari F40',
-    'Дизайн Pininfarina'
-  ];
-  public hideBtnFill = true;
+export class CarComponent {
+  public info: Car = { 
+    name:'Ferrari',
+    mileage: 2000,
+    tankVolume: 10,
+    quantityGas: 7,
+    characteristics: [
+      'Двигатель 2 литра',
+      'Вес в 1100 кг',
+      'Разгон от 0-100',
+      'Модель Ferrari F40',
+      'Дизайн Pininfarina'
+    ]
+  };
+  public hideBtnFill: boolean = true;
 
   constructor() { }
 
   public ride(): void {
-    if (this.quantityGas <= 0) {
+    if (this.info.quantityGas <= 0) {
       return console.log('Машина не едет :(  Нужно заправить бак!');
     }
 
-    this.mileage++;
-    this.quantityGas--;
+    this.info.mileage++;
+    this.info.quantityGas--;
 
-    console.log(`Машина едет. Пробег =  ${this.mileage}  бензин в баке = ${this.quantityGas}`);
+    console.log(`Машина едет. Пробег =  ${this.info.mileage}  бензин в баке = ${this.info.quantityGas}`);
 
-    if (this.quantityGas < 10) {
+    if (this.info.quantityGas < 3) {
       this.hideBtnFill = false;
       console.log('Нужно заправить бак!');
     }
   }
 
   public fill(): void {
-    this.quantityGas = this.tankVolume;
-    console.log(`Заправка. Пробег =  ${this.mileage}  бензин в баке = ${this.quantityGas}`);
+    this.info.quantityGas = (this.info.quantityGas + 1 <= this.info.tankVolume) ? this.info.quantityGas + 1 : this.info.quantityGas;
+    console.log(`Заправка. Пробег =  ${this.info.mileage}  бензин в баке = ${this.info.quantityGas}`);
 
-    if (this.quantityGas >= 10) {
+    if (this.info.quantityGas >= 3) {
       this.hideBtnFill = true;
     } else {
-      console.log('Нужно еще заправить бак!');
+      console.log('Желательно еще заправить бак!');
     }
   }
 }
